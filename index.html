@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Proposal 💙</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+}
+
+/* Pages */
+.page{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+position:absolute;
+transition:1s;
+text-align:center;
+padding:20px;
+}
+
+#page1,#page2,#page3,#celebration{
+background: linear-gradient(135deg,#c2e9fb,#a1c4fd);
+}
+
+/* Popup Box */
+.popup{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+position:relative;
+}
+
+/* Buttons */
+button{
+margin:10px;
+padding:10px 20px;
+border:none;
+border-radius:25px;
+background:#4a90e2;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+position:relative;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* Hide pages initially */
+#page2,#page3,#celebration{
+left:100%;
+}
+
+/* Message box */
+.message{
+background:rgba(255,255,255,0.85);
+padding:20px;
+border-radius:20px;
+max-width:500px;
+color:#0d3b66;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.typewriter{
+border-right:2px solid #0d3b66;
+white-space:pre-wrap;
+}
+
+/* Hearts */
+.heart{
+position:absolute;
+bottom:-20px;
+color:#ff4d6d;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* Sparkle */
+.sparkle{
+position:absolute;
+width:8px;
+height:8px;
+background:white;
+border-radius:50%;
+pointer-events:none;
+animation:spark 0.8s linear forwards;
+}
+
+@keyframes spark{
+0%{transform:scale(1);opacity:1;}
+100%{transform:scale(3);opacity:0;}
+}
+
+/* Celebration */
+#celebration h1{
+font-size:28px;
+color:#0d3b66;
+margin-bottom:20px;
+}
+
+.flower{
+font-size:50px;
+animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+from{transform:translateY(0);}
+to{transform:translateY(-15px);}
+}
+
+@media(max-width:600px){
+.message{font-size:14px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+<div class="popup">
+<h2>apology from heart? 💙</h2>
+<button onclick="goPage2()">Yes 💖</button>
+<button id="no1">No 😅</button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<div class="message">
+<h2>Hey meri kanto ghelri 🐿️</h2>
+<br>
+<p id="para" class="typewriter"></p>
+<br>
+<button id="nextBtn" style="display:none;" onclick="goPage3()">Next 💙</button>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<div class="popup">
+<h2>Will You Marry Me? 💍💙</h2>
+<button onclick="celebrate()">Yes 💖</button>
+<button id="no2">No 😜</button>
+</div>
+</div>
+
+<!-- CELEBRATION -->
+<div class="page" id="celebration">
+<h1>She Said YES!!! 💍💙</h1>
+<div class="flower">💙🌸💙🌸💙</div>
+<p>Blue Orchids for My Forever Love 💐</p>
+</div>
+
+<script>
+
+/* Moving NO buttons */
+function move(btn){
+btn.style.position="absolute";
+btn.style.left=Math.random()*200+"px";
+btn.style.top=Math.random()*150+"px";
+}
+
+document.getElementById("no1").addEventListener("mouseover",function(){move(this)});
+document.getElementById("no1").addEventListener("touchstart",function(){move(this)});
+document.getElementById("no2").addEventListener("mouseover",function(){move(this)});
+document.getElementById("no2").addEventListener("touchstart",function(){move(this)});
+
+/* Page transitions */
+function goPage2(){
+document.getElementById("page1").style.left="-100%";
+document.getElementById("page2").style.left="0";
+typeText();
+}
+
+function goPage3(){
+document.getElementById("page2").style.left="-100%";
+document.getElementById("page3").style.left="0";
+}
+
+function celebrate(){
+document.getElementById("page3").style.left="-100%";
+document.getElementById("celebration").style.left="0";
+}
+
+/* Typewriter */
+let text=`Since I met you wo meri life ka best moments tha bby,
+fir hmne plan kra movie ka 1 din ka lockdown lagye,
+fir 3 days then 1 month,
+fir hme pyaar hogye ganda wala I wu you bache 💙
+
+mai axhi c job lakr isi saal shadi kar rishta lakr ana chata hu
+tre ghr tre mmy papa se tre hatha mangne m liye,
+let's fix it everything wify 💍
+
+btw Iwu so much meri kanto ghelri
+ yr sach mai dil se sry for my all mistake jo b mena kri hai💙`;
+
+let i=0;
+function typeText(){
+if(i<text.length){
+document.getElementById("para").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeText,40);
+}else{
+document.getElementById("nextBtn").style.display="inline-block";
+}
+}
+
+/* Floating Hearts */
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(heart);
+}
+
+/* Sparkle */
+document.addEventListener("click",function(e){
+for(let i=0;i<8;i++){
+let s=document.createElement("div");
+s.classList.add("sparkle");
+s.style.left=(e.pageX+(Math.random()*30-15))+"px";
+s.style.top=(e.pageY+(Math.random()*30-15))+"px";
+document.body.appendChild(s);
+setTimeout(()=>{s.remove()},800);
+}
+});
+
+</script>
+
+</body>
+</html>
